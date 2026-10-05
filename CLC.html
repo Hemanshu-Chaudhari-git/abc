@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fertilizer Management System</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f1f8e9;
+        }
+        
+        header {
+            background-color: #2e7d32;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .student-info {
+            background-color: #e8f5e9;
+            color: #1b5e20;
+            text-align: center;
+            padding: 12px;
+            font-weight: bold;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+        
+        .form-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #ccc;
+            margin-bottom: 30px;
+        }
+        
+        .form-box h2 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+        
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .add-btn {
+            background-color: #2e7d32;
+            color: white;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .add-btn:hover {
+            background-color: #1b5e20;
+        }
+        
+        #search {
+            margin-bottom: 20px;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+        
+        .product {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #ccc;
+        }
+        
+        .product h3 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .product p {
+            margin: 8px 0;
+        }
+        
+        .delete-btn {
+            background-color: #d32f2f;
+            color: white;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .delete-btn:hover {
+            background-color: #b71c1c;
+        }
+        
+        .empty {
+            text-align: center;
+            color: #777;
+            padding: 20px;
+        }
+        
+        footer {
+            background-color: #2e7d32;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🌱 Fertilizer Management System</h1>
+        <p>Simple Fertilizer Application</p>
+    </header>
+
+    <!-- Student Information -->
+    <div class="student-info">
+        <p>Name: Hemanshu Chaudhari</p>
+        <p>Roll No: 22</p>
+    </div>
+
+    <div class="container">
+
+        <!-- Add Fertilizer -->
+        <div class="form-box">
+
+            <h2>Add Fertilizer</h2>
+
+            <input type="text" id="name" placeholder="Fertilizer Name">
+
+            <select id="type">
+                <option value="">Select Type</option>
+                <option value="Organic">Organic</option>
+                <option value="Chemical">Chemical</option>
+                <option value="Liquid">Liquid</option>
+            </select>
+
+            <input type="number" id="price" placeholder="Price (₹)">
+
+            <input type="text" id="quantity" placeholder="Quantity (e.g. 50 kg)">
+
+            <button class="add-btn" onclick="addFertilizer()">
+                Add Fertilizer
+            </button>
+
+        </div>
+
+        <!-- Search -->
+        <input type="text" id="search" placeholder="🔍 Search fertilizer..." onkeyup="searchFertilizer()">
+
+        <!-- Products -->
+        <div class="products" id="products"></div>
+
+    </div>
+
+    <footer>
+        <p>Fertilizer Management System</p>
+        <p>Developed by Hemanshu Chaudhari | Roll No: 22</p>
+    </footer>
+
+    <script>
+        let fertilizers = [
+
+            {
+                name: "NPK Fertilizer",
+                type: "Chemical",
+                price: 1250,
+                quantity: "50 kg"
+            },
+
+            {
+                name: "Organic Compost",
+                type: "Organic",
+                price: 450,
+                quantity: "25 kg"
+            },
+
+            {
+                name: "Liquid Fertilizer",
+                type: "Liquid",
+                price: 650,
+                quantity: "5 L"
+            }
+
+        ];
+
+
+        // Display fertilizers
+        function displayFertilizers(list = fertilizers) {
+
+            const products =
+                document.getElementById("products");
+
+            products.innerHTML = "";
+
+            if (list.length === 0) {
+
+                products.innerHTML =
+                    '<div class="empty">No fertilizers found.</div>';
+
+                return;
+            }
+
+            list.forEach((fertilizer, index) => {
+
+                products.innerHTML += `
+
+                    <div class="product">
+
+                        <h3>${fertilizer.name}</h3>
+
+                        <p>
+                            <strong>Type:</strong>
+                            ${fertilizer.type}
+                        </p>
+
+                        <p>
+                            <strong>Price:</strong>
+                            ₹${fertilizer.price}
+                        </p>
+
+                        <p>
+                            <strong>Quantity:</strong>
+                            ${fertilizer.quantity}
+                        </p>
+
+                        <button
+                            class="delete-btn"
+                            onclick="deleteFertilizer(${index})">
+                            Delete
+                        </button>
+
+                    </div>
+
+                `;
+            });
+        }
+
+
+        // Add fertilizer
+        function addFertilizer() {
+
+            const name =
+                document.getElementById("name").value;
+
+            const type =
+                document.getElementById("type").value;
+
+            const price =
+                document.getElementById("price").value;
+
+            const quantity =
+                document.getElementById("quantity").value;
+
+
+            if (
+                name === "" ||
+                type === "" ||
+                price === "" ||
+                quantity === ""
+            ) {
+
+                alert("Please fill all fields.");
+
+                return;
+            }
+
+
+            fertilizers.push({
+
+                name: name,
+                type: type,
+                price: price,
+                quantity: quantity
+
+            });
+
+
+            // Clear form
+            document.getElementById("name").value = "";
+            document.getElementById("type").value = "";
+            document.getElementById("price").value = "";
+            document.getElementById("quantity").value = "";
+
+
+            displayFertilizers();
+
+            alert("Fertilizer added successfully!");
+        }
+
+
+        // Delete fertilizer
+        function deleteFertilizer(index) {
+
+            fertilizers.splice(index, 1);
+
+            displayFertilizers();
+        }
+
+
+        // Search fertilizer
+        function searchFertilizer() {
+
+            const search =
+                document.getElementById("search")
+                .value
+                .toLowerCase();
+
+
+            const filtered =
+                fertilizers.filter(function(fertilizer) {
+
+                    return fertilizer.name
+                        .toLowerCase()
+                        .includes(search);
+
+                });
+
+
+            displayFertilizers(filtered);
+        }
+
+
+        // Load products
+        displayFertilizers();
+    </script>
+
+</body>
+
+</html>

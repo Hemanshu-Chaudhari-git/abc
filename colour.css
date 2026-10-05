@@ -1,0 +1,193 @@
+/* Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+/* Body */
+
+body {
+    background-color: #f1f8e9;
+    color: #333;
+}
+
+
+/* Header */
+
+header {
+    background-color: #2e7d32;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+header h1 {
+    margin-bottom: 8px;
+}
+
+header p {
+    font-size: 16px;
+}
+
+
+/* Main container */
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+
+/* Form box */
+
+.form-box {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    margin-bottom: 25px;
+}
+
+.form-box h2 {
+    color: #2e7d32;
+    margin-bottom: 15px;
+}
+
+
+/* Input fields */
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+input:focus,
+select:focus {
+    border-color: #2e7d32;
+    outline: none;
+}
+
+
+/* Buttons */
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+
+/* Add button */
+
+.add-btn {
+    width: 100%;
+    background-color: #2e7d32;
+    color: white;
+    margin-top: 10px;
+}
+
+.add-btn:hover {
+    background-color: #1b5e20;
+}
+
+
+/* Search box */
+
+#search {
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+
+/* Product grid */
+
+.products {
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+
+/* Product card */
+
+.product {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+    transition: 0.3s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+}
+
+
+/* Product title */
+
+.product h3 {
+    color: #2e7d32;
+    margin-bottom: 12px;
+}
+
+
+/* Product information */
+
+.product p {
+    margin: 8px 0;
+    color: #555;
+}
+
+
+/* Delete button */
+
+.product button {
+    width: 100%;
+    background-color: #d32f2f;
+    color: white;
+    margin-top: 12px;
+}
+
+.product button:hover {
+    background-color: #b71c1c;
+}
+
+
+/* Empty message */
+
+.products>p {
+    text-align: center;
+    width: 100%;
+    color: #777;
+    padding: 20px;
+}
+
+
+/* Mobile responsive */
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 24px;
+    }
+    .container {
+        width: 95%;
+    }
+    .form-box {
+        padding: 18px;
+    }
+    .products {
+        grid-template-columns: 1fr;
+    }
+}
